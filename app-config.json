@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "PharmLink AI",
+    "headerColor": "#3B82F6",
+    "textColor": "white",
+    "statusBar": "white",
+    "actionBarHidden": true
+  },
+  "debug": false,
+  "template": {
+    "id": "default",
+    "params": {
+      "color": "#3B82F6"
+    }
+  },
+  "listSubscriptionMessages": [],
+  "tabbar": [
+    { "title": "Trang chủ", "iconPath": "icons/home.png", "pageNumber": 0 },
+    { "title": "Tra cứu", "iconPath": "icons/search.png", "pageNumber": 1 },
+    { "title": "Quét đơn", "iconPath": "icons/scan.png", "pageNumber": 2 },
+    { "title": "Hỏi AI", "iconPath": "icons/chat.png", "pageNumber": 3 },
+    { "title": "Hồ sơ", "iconPath": "icons/profile.png", "pageNumber": 4 }
+  ],
+  "pages": [
+    "pages/home",
+    "pages/drug-search",
+    "pages/prescription-scan",
+    "pages/ai-chat",
+    "pages/profile/index",
+    "pages/pharmacy-finder",
+    "pages/my-health",
+    "pages/medications/index"
+  ]
+}

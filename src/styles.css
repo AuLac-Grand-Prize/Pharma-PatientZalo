@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #3b82f6;
+  --app-font-size: 15px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", "Funnel Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: var(--app-font-size);
+  background: #f8fafc;
+  color: #1a1a1a;
+}
+
+/* Larger touch targets when font is up-scaled (elderly users) */
+html[data-font-scale="large"] button,
+html[data-font-scale="large"] a[role="button"],
+html[data-font-scale="xlarge"] button,
+html[data-font-scale="xlarge"] a[role="button"] {
+  min-height: 44px;
+}
+html[data-font-scale="xlarge"] {
+  letter-spacing: 0.01em;
+}
+
+.zalo-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background: #f8fafc;
+}
+
+.safe-bottom {
+  padding-bottom: calc(var(--safe-bottom) + 8px);
+}
+
+.safe-top {
+  padding-top: var(--safe-top);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
