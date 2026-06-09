@@ -15,7 +15,7 @@ export function haptic(type: HapticType = "light"): void {
   const enabled = usePreferences.getState().hapticsEnabled;
   if (!enabled) return;
   const duration = PATTERNS[type];
-  void vibrate({ duration }).catch(() => {
+  void vibrate({ milliseconds: duration }).catch(() => {
     if (typeof navigator !== "undefined" && "vibrate" in navigator) {
       navigator.vibrate?.(duration);
     }
