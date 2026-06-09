@@ -4,6 +4,7 @@ import { AppShell } from "@/components/AppShell";
 import { PageHeader } from "@/components/PageHeader";
 import { cn } from "@/lib/cn";
 import { haptic } from "@/lib/haptics";
+import { sendQuestion } from "@/services/ask-pharmacist";
 import type { ChatMessage } from "@/types";
 
 const SUGGESTED = [
@@ -42,17 +43,28 @@ export default function AiChatPage() {
     setMessages((m) => [...m, user]);
     setInput("");
     setSending(true);
-    await new Promise((r) => setTimeout(r, 900));
-    const reply: ChatMessage = {
-      id: crypto.randomUUID(),
-      role: "assistant",
-      content:
-        "Paracetamol 500mg dùng cho người lớn: 1 viên/lần, cách 4-6 giờ, tối đa 4 viên/ngày. Không phối hợp nhiều thuốc cùng chứa paracetamol để tránh quá liều gây tổn thương gan.",
-      at: new Date().toISOString(),
-    };
-    setMessages((m) => [...m, reply]);
-    haptic("success");
-    setSending(false);
+    try {
+      const content = await sendQuestion(text);
+      const reply: ChatMessage = {
+        id: crypto.randomUUID(),
+        role: "assistant",
+        content,
+        at: new Date().toISOString(),
+      };
+      setMessages((m) => [...m, reply]);
+      haptic("success");
+    } catch {
+      const reply: ChatMessage = {
+        id: crypto.randomUUID(),
+        role: "assistant",
+        content: "Xin lỗi, hiện chưa kết nối được dược sĩ AI. Vui lòng thử lại sau.",
+        at: new Date().toISOString(),
+      };
+      setMessages((m) => [...m, reply]);
+      haptic("error");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
