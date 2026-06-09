@@ -1,0 +1,6 @@
+# Local browser preview of the Zalo Mini App (static bundle served by nginx).
+# Production delivery to Zalo uses `zmp-cli deploy`, not this container.
+services:
+  patientzalo-preview:
+    build: .
+    ports: ["3001:80"]
